@@ -1,0 +1,103 @@
+.header-wrapper {
+  min-width: 100vh;
+  background: var(--main-color);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 0px;
+  max-width: 1230px;
+  margin: auto;
+
+  color: var(--contrast-color);
+}
+
+.header__logo {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+
+  filter: var(--filter-contrast-color);
+
+  .logo__pig {
+    width: 55px;
+    height: 50px;
+  }
+
+  .logo__brand {
+    width: 137px;
+    height: 28px;
+  }
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+
+  height: 45px;
+  width: fit-content;
+  padding: 6px 6px 6px 16px;
+  overflow: hidden;
+
+  border-radius: 70px;
+  background: var(--contrast-color);
+}
+
+.search-bar__input {
+  width: 100%;
+  height: 100%;
+}
+
+.search-bar__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  padding: 12px;
+
+  border-radius: 70px;
+  border: 2px solid var(--main-color);
+  background: var(--darker-color);
+  font-weight: bold;
+  color: inherit;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: var(--highlight-filter);
+  }
+}
+
+.header__user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  border: 2px solid var(--contrast-color);
+  border-radius: 25px;
+  background: var(--fore-background-color);
+
+  cursor: pointer;
+
+  &:hover {
+    filter: var(--highlight-filter);
+  }
+}
+
+.header__icon {
+  width: 20px;
+  height: 20px;
+
+  filter: var(--filter-contrast-color);
+}
+
+.header__image {
+  height: 80px;
+}

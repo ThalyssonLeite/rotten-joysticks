@@ -1,0 +1,25 @@
+<div class="no-login">
+  <div class="main-slider-wrapper">
+    <div #slider class="main-slider">
+      <div class="slide" *ngFor="let slide of slides">
+        <img [src]="slide.image" alt="">
+        <div class="slide__title">
+          {{ slide.title }}
+        </div>
+      </div>
+    </div>
+
+    <div class="arrows">
+      <div class="arrow" (click)="navigate(false)">
+        <i class="triangle-fill-icon arrow__icon"></i>
+      </div>
+      <div class="arrow right" (click)="navigate(true)">
+        <i class="triangle-fill-icon arrow__icon"></i>
+      </div>
+    </div>
+
+    <div class="main-slider__pagination">
+      <div class="pagination__ball" *ngFor="let slide of slides" [class.is-active]="slide.active"></div>
+    </div>
+  </div>
+</div>
