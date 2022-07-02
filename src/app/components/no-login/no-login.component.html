@@ -22,4 +22,16 @@
       <div class="pagination__ball" *ngFor="let slide of slides" [class.is-active]="slide.active"></div>
     </div>
   </div>
+
+  <div class="catalog">
+    <div class="catalog__title">Catalog</div>
+
+    <div class="catalog__items">
+      <rojo-card *ngFor="let game of gamesAtPagination" [game]="game"></rojo-card>
+    </div>
+
+    <div class="load-more" *ngIf="gamesAtPagination.length < totalGamesLength" (click)="getGamesByPagination(pageNumber)">
+      View more
+    </div>
+  </div>
 </div>

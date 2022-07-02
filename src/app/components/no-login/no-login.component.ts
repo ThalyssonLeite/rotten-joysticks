@@ -9,30 +9,33 @@ import { APIService } from 'src/app/services/api.service';
 export class NoLoginComponent implements OnInit {
   @ViewChild('slider') slider: ElementRef;
 
-  fallbackImage: string = 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/most-popular-video-games-of-2022-1642612227.png';
-
   gamesList: any[];
+  gamesAtPagination: any[] = [];
   slides: any[];
   slideWidth: number;
+  pageNumber: number = 0;
+  totalGamesLength: number;
 
   constructor(private apiService: APIService) { }
 
   ngOnInit(): void {
     this.getGameList();
+    this.getGamesByPagination(this.pageNumber);
   }
 
   getGameList () {
     this.apiService.getGamesList().subscribe((res: any) => {
       this.gamesList = res.games;
+      this.totalGamesLength = res.totalSize;
       this.separateSlides();
       setTimeout(() => this.getSlidesWidth(), 0);
     });
   }
 
   separateSlides () {
-    this.slides = this.gamesList.slice(0, 3).map((game, index) => ({
+    this.slides = this.gamesList.reverse().slice(0, 3).map((game, index) => ({
       title: game.title,
-      image: game.photos.length ? game.photos[0].url : this.fallbackImage,
+      image: game.photos.length ? game.photos[0].url : this.apiService.fallbackGameImage,
       active: !index ? true : false
     }))
   }
@@ -66,5 +69,17 @@ export class NoLoginComponent implements OnInit {
     }
 
     this.slider.nativeElement.scrollLeft = this.slideWidth * newActiveIndex;
+  }
+
+  getGamesByPagination (pageNumber: number) {
+    this.apiService.getGamesListSixPerPage(pageNumber + 1).subscribe((res: any) => {
+      this.gamesAtPagination = [...this.gamesAtPagination, ...res.games];
+      this.pageNumber = pageNumber + 1;
+
+      if (res.totalSize !== this.totalGamesLength) {
+        Array(this.pageNumber).forEach((_, index: number) => this.getGamesByPagination(index));
+        this.totalGamesLength = res.totalSize;
+      };//if someone adds a new game this reload all the list of games till the page that we currently are, it may prevent bugs in future,
+    });
   }
 }

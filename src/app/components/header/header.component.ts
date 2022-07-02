@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'rojo-header',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  constructor(private apiService: APIService) { }
 
   ngOnInit(): void {
   }

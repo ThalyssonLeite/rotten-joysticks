@@ -1,18 +1,20 @@
 .rotten-joysticks {
-  width: 100vw;
   min-height: 100vh;
 
   /* LIGHT THEME VARIABLES */
   --main-color: #fb4442;
   --contrast-color: #fff;
-  --background-color: #1b191a;
+  --background-color: #302c2e;
   --fore-background-color: #2d2d2d;
   --darker-color: #151515;
+  --box-shadow: black;
 
   --highlight-filter: brightness(1.2);
 
   --filter-contrast-color: invert(100%) sepia(1%) saturate(1378%) hue-rotate(98deg) brightness(114%) contrast(100%);
   --filter-main-color: invert(35%) sepia(27%) saturate(5190%) hue-rotate(338deg) brightness(106%) contrast(98%);
+
+  --cubic-bezier: cubic-bezier(.83,.02,.65,1.2);
 
   background: var(--background-color);
 }

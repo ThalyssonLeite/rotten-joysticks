@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card__image">
+    <img [src]="image" alt="">
+  </div>
+
+  <div class="card__info">
+    <div class="info__name">{{ game.title }}</div>
+    <div class="info__price">$ {{ game.mediumPrice || '???' }}</div>
+    <div class="info__rate">{{ game.rating }} / 10</div>
+  </div>
+</div>
