@@ -84,7 +84,7 @@ export class RateModalComponent implements OnInit {
   resetModal () {
     setTimeout( () => {
       this.stars.forEach(star => star.active = false);
-      this.selectedStars = [ ...this.stars];
+      this.selectedStars.forEach(star => star.active = false);
       this.selectedRate = 0;
       this.selectDOMStarScale();
     }, 300);

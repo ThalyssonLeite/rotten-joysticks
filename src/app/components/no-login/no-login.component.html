@@ -1,7 +1,7 @@
 <div class="no-login">
   <div class="main-slider-wrapper">
     <div #slider class="main-slider">
-      <div class="slide" *ngFor="let slide of slides">
+      <div class="slide" *ngFor="let slide of slides" (click)="goToDetailsPage(slide)">
         <img [src]="slide.image" alt="">
         <div class="slide__title">
           {{ slide.title }}
@@ -31,7 +31,8 @@
     </div>
 
     <div class="load-more" *ngIf="gamesAtPagination.length < totalGamesLength" (click)="getGamesByPagination(pageNumber)">
-      View more
+      <span *ngIf="!loadingPages">View more</span>
+      <rojo-loading-balls *ngIf="loadingPages" [color]="'var(--contrast-color)'"></rojo-loading-balls>
     </div>
   </div>
 </div>

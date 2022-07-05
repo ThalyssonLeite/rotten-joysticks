@@ -17,6 +17,8 @@ export class NoLoginComponent implements OnInit {
   pageNumber: number = 0;
   totalGamesLength: number;
 
+  loadingPages: boolean = false;
+
   constructor(private apiService: APIService, private router: Router) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class NoLoginComponent implements OnInit {
   separateSlides () {
     this.slides = this.gamesList.reverse().slice(0, 3).map((game, index) => ({
       title: game.title,
+      _id: game._id,
       image: game.photos.length ? game.photos[0].url : this.apiService.fallbackGameImage,
       active: !index ? true : false
     }))
@@ -73,8 +76,11 @@ export class NoLoginComponent implements OnInit {
   }
 
   getGamesByPagination (pageNumber: number) {
+    this.loadingPages = true;
+
     this.apiService.getGamesListSixPerPage(pageNumber + 1).subscribe((res: any) => {
       this.gamesAtPagination = [...this.gamesAtPagination, ...res.games];
+      this.loadingPages = false;
       this.pageNumber = pageNumber + 1;
 
       if (res.totalSize !== this.totalGamesLength) {
@@ -82,6 +88,7 @@ export class NoLoginComponent implements OnInit {
         this.totalGamesLength = res.totalSize;
       };//if someone adds a new game this reload all the list of games till the page that we currently are, it may prevent bugs in future,
     });
+
   }
 
   goToDetailsPage (game: any) {

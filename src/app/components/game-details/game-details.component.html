@@ -5,7 +5,25 @@
 
   <div class="game-details__game">
     <div class="game__image">
-      <img [src]="mainImage" alt="{{ game.title }} image">
+      <img *ngIf="mainImage.type === 'photo'" [src]="mainImage.url" alt="{{ game.title }} image" >
+      <iframe  *ngIf="mainImage.type === 'video'" width="594.031" height="360" [src]="mainImage.url | safeUrl" title="{{ game.title }} photo" frameborder="3" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen style="border-radius: 4px"></iframe>
+
+      <div #slider class="carousel" *ngIf="slides && slides.length">
+        <div class="slide" *ngFor="let slide of slides; let index = index" [class.is-active]="slide.active" (click)="openSlide($event, index)">
+          <img *ngIf="slide.type === 'photo'" [src]="slide.url" alt="{{ game.title }} image" >
+          <iframe  *ngIf="slide.type === 'video'" width="115" height="65" [src]="slide.url | safeUrl" title="{{ game.title }} video" frameborder="3" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe>
+        </div>
+
+        <div class="arrows" *ngIf="slides.length > 4">
+          <div class="arrow" (click)="navigate(false)">
+            <i class="triangle-fill-icon arrow__icon"></i>
+          </div>
+
+          <div class="arrow right" (click)="navigate(true)">
+            <i class="triangle-fill-icon arrow__icon"></i>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="game__divisor"></div>

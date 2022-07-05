@@ -15,6 +15,7 @@ import * as AppReducers from './data/app.reducers';
 import { GameDetailsComponent } from './components/game-details/game-details.component';
 import { RateModalComponent } from './components/rate-modal/rate-modal.component';
 import { LoadingBallsComponent } from './components/loading-balls/loading-balls.component';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +26,7 @@ import { LoadingBallsComponent } from './components/loading-balls/loading-balls.
     GameDetailsComponent,
     RateModalComponent,
     LoadingBallsComponent,
+    SafeUrlPipe,
   ],
   imports: [
     BrowserModule,
