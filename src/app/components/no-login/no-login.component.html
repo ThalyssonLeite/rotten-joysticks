@@ -27,7 +27,7 @@
     <div class="catalog__title">Catalog</div>
 
     <div class="catalog__items">
-      <rojo-card *ngFor="let game of gamesAtPagination" [game]="game"></rojo-card>
+      <rojo-card *ngFor="let game of gamesAtPagination" [game]="game" (click)="goToDetailsPage(game)"></rojo-card>
     </div>
 
     <div class="load-more" *ngIf="gamesAtPagination.length < totalGamesLength" (click)="getGamesByPagination(pageNumber)">

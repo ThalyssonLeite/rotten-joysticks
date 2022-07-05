@@ -1,0 +1,159 @@
+.rate-modal-wrapper {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  backdrop-filter: blur(6px);
+  background: #35394540;
+  transition: 200ms ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+
+    .rate-modal {
+      animation: rate-modal 400ms ease forwards;
+    }
+  }
+}
+
+.invisible-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.rate-modal {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  width: min(520px, 90vw);
+  padding: 40px;
+
+  background: #1f1f1f;
+  border-radius: 6px;
+}
+
+@keyframes rate-modal {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  };
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.rate-this {
+  margin-top: 38px;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-color);
+}
+
+.selected-rate {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 90px;
+  height: 90px;
+  top: calc(0px - 45px);
+  left: calc(50% - 45px);
+
+  color: var(--contrast-color);
+  transform: var(--scale);//this var --scale comes dinamicaly with js
+  transition: 250ms ease-out;
+
+  .selected-rate__text {
+    position: relative;
+
+    font-size: 24px;
+    margin-top: 10px;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  i {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    filter: var(--filter-main-color);
+    z-index: 0;
+  }
+}
+
+.game-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--contrast-color);
+}
+
+.stars {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 4px;
+}
+
+.star {
+  width: 24px;
+  height: 24px;
+
+  background: url('../../../assets/icons/star_outline.svg') no-repeat center;
+  background-size: contain;
+  filter: invert(81%) sepia(0%) saturate(8%) hue-rotate(346deg) brightness(85%) contrast(88%);//#aaaaaa
+
+  cursor: pointer;
+
+  &:hover, &.is-active {
+    background: url('../../../assets/icons/star_fill.svg') no-repeat center;
+    filter: var(--filter-main-color);
+  }
+}
+
+.rate-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 330px;
+  height: 36px;
+  margin-top: 12px;
+
+  background: #313130;
+  color: var(--contrast-color);
+  font-weight: 600;
+  border-radius: 4px;
+  transition: 150ms ease;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.2);
+  }
+
+  &.is-disabled {
+    background: #575757;
+    color: #aaa;
+    pointer-events: none;
+  }
+}

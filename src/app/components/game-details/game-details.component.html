@@ -1,0 +1,60 @@
+<div class="game-details" *ngIf="game">
+  <div class="game-details__bread-crumb">
+    <i class="house-fill-icon" (click)="goToMainPage()"></i> | {{ game.title }}
+  </div>
+
+  <div class="game-details__game">
+    <div class="game__image">
+      <img [src]="mainImage" alt="{{ game.title }} image">
+    </div>
+
+    <div class="game__divisor"></div>
+
+    <div class="game__main">
+      <div class="title">
+        <div class="rate">{{ rating }}</div>
+        {{ game.title }}
+      </div>
+
+      <div class="resume">
+        {{ game.description }}
+      </div>
+
+      <div class="main__divisor"></div>
+
+      <div class="game__info">
+        <div class="info__genres" *ngIf="game.genres.length"><b>Genres</b>: {{ game.genres.join(', ') }}</div>
+        <div class="info__platforms" *ngIf="game.platforms.length"><b>Platforms</b>: {{ game.platforms.join(', ') }}</div>
+        <div class="info__tags" *ngIf="game.tags.length"><b>Tags</b>: {{ game.tags.join(', ') }}</div>
+        <div class="info__total-votes" *ngIf="game.totalVotes"><b>Total votes</b>: {{ game.totalVotes }}</div>
+        <div class="info__release-year" *ngIf="game.releaseYear"><b>Release year</b>: {{ game.releaseYear }}</div>
+      </div>
+
+      <div class="main__divisor"
+      *ngIf="
+        game.genres.length ||
+        game.platforms.length ||
+        game.tags.length ||
+        game.totalVotes ||
+        game.releaseYear"
+        >
+      </div>
+
+      <div class="game__price" *ngIf="game.mediumPrice !== undefined">
+        Medium Price: <span>${{ game.mediumPrice.toFixed(2) }}</span>
+      </div>
+
+      <div class="game__vote" (click)="openRatingModal()">
+        RATE NOW
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="description" *ngIf="game">
+  <div class="description__title">DESCRIPTION</div>
+
+  <div class="description__box">
+    {{ game.description }}
+  </div>
+</div>

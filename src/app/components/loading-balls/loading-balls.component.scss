@@ -1,0 +1,32 @@
+.loading-balls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  & .loading-balls__ball {
+    width: 8px;
+    height: 8px;
+    background: var(--bg-color);
+    border-radius: 10px;
+    transform: translateY(0px);
+
+    &.one {
+      animation: ball 1000ms ease alternate infinite;
+    }
+
+    &.two {
+      animation: ball 1000ms ease 166.5ms alternate infinite;
+    }
+
+    &.three {
+      animation: ball 1000ms ease 333ms alternate infinite;
+    }
+  }
+}
+
+@keyframes ball {
+0% { transform: translateY(0%) }
+50% { transform: translateY(30%) }
+150% { transform: translateY(-30%) }
+}

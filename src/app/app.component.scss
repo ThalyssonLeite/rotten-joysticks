@@ -1,13 +1,21 @@
 .rotten-joysticks {
   min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  --grey: #4d4d4d;
 
   /* LIGHT THEME VARIABLES */
   --main-color: #fb4442;
-  --contrast-color: #fff;
+  --contrast-color: #ffffff;
   --background-color: #302c2e;
-  --fore-background-color: #2d2d2d;
+  --fore-background-color: #adadad;
   --darker-color: #151515;
   --box-shadow: black;
+  --gold-color: #f5c518;
+  --white-color: var(--box-shadow);
 
   --highlight-filter: brightness(1.2);
 
@@ -21,6 +29,7 @@
 
 .rotten-joysticks__body {
   max-width: 1230px;
-  height: 100%;
-  margin: auto;
+  min-width: 1230px;
+  padding: 40px 0;
+  margin: 0 auto auto auto;
 }

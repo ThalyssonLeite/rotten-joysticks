@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { APIService } from 'src/app/services/api.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class NoLoginComponent implements OnInit {
   pageNumber: number = 0;
   totalGamesLength: number;
 
-  constructor(private apiService: APIService) { }
+  constructor(private apiService: APIService, private router: Router) { }
 
   ngOnInit(): void {
     this.getGameList();
@@ -81,5 +82,9 @@ export class NoLoginComponent implements OnInit {
         this.totalGamesLength = res.totalSize;
       };//if someone adds a new game this reload all the list of games till the page that we currently are, it may prevent bugs in future,
     });
+  }
+
+  goToDetailsPage (game: any) {
+    this.router.navigate([`/${game._id}`]);
   }
 }

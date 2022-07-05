@@ -18,4 +18,12 @@ export class APIService {
   getGamesListSixPerPage (page: number) {
     return this.http.get(`https://api-labs.tindin.com.br/games?perPage=8&page=${page || 1}`);
   }
+
+  getGame (gameId: string) {
+    return this.http.get(`https://api-labs.tindin.com.br/games/${gameId}`);
+  }
+
+  rateGame (gameId: string, rate: number) {
+    return this.http.post(`https://api-labs.tindin.com.br/games/rate`, { gameId, rate });
+  }
 }

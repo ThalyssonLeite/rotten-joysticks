@@ -11,23 +11,28 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-
+import * as AppReducers from './data/app.reducers';
+import { GameDetailsComponent } from './components/game-details/game-details.component';
+import { RateModalComponent } from './components/rate-modal/rate-modal.component';
+import { LoadingBallsComponent } from './components/loading-balls/loading-balls.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NoLoginComponent,
     CardComponent,
-    FooterComponent
+    FooterComponent,
+    GameDetailsComponent,
+    RateModalComponent,
+    LoadingBallsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreModule.forRoot(AppReducers, {}),
+    StoreDevtoolsModule.instrument(),
   ],
   providers: [],
   bootstrap: [AppComponent]
