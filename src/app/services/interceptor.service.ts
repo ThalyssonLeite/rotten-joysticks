@@ -14,7 +14,7 @@ export class Interceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
-    if (token === null) return next.handle(req);
+    if (token === null || !req.url.includes('api')) return next.handle(req);
 
     const modifiedRequest = req.clone({
       setHeaders: {
