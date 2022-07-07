@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { setChoosenCard, setRateModal } from 'src/app/data/app.actions';
+import { setChoosenCard, setDeletionModal, setRateModal } from 'src/app/data/app.actions';
 import { APIService } from 'src/app/services/api.service';
 
 @Component({
@@ -19,14 +19,20 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
   rating: string;
   slides: any[];
 
-  state$: Subscription;
+  cardState$: Subscription;
+  headerState$: Subscription;
+  logged: boolean;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: APIService, private store: Store<{ card }>) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private apiService: APIService, private store: Store<{ card, header }>) { }
 
   ngOnInit(): void {
     let gameId = location.href.match(/h.+\/\/.+?\/(.+)?/)[1];
 
-    this.state$ = this.store.select('card').subscribe(({ game }) => {
+    this.headerState$ = this.store.select('header').subscribe(label => {
+      this.logged = label === 'Signout';
+    });
+
+    this.cardState$ = this.store.select('card').subscribe(({ game }) => {
       if (gameId !== game._id) {
         this.apiService.getGame(gameId).subscribe({
           next: ({ game }: any) => {
@@ -51,7 +57,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
       this.rating = game.rating !== undefined
         ? game.rating.toFixed(1).toString().endsWith('0')
-          ? game.rating + ' / 10'
+          ? game.rating.toFixed(1).toString().substring(0, 2).replace('.','') + ' / 10'
           : game.rating.toFixed(1) + ' / 10'
         : '???'
     })
@@ -74,6 +80,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
 
   setSlides () {
     function getEmbedYoutubeVideoFromLink (url) {
+      if (url.includes('embed')) return url;
       const match = url.match(/v=(.+)/) ? url.match(/v=(.+)/)[1] : '';
       return `https://www.youtube.com/embed/${match}`;
     }
@@ -126,7 +133,11 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
     this.slider.nativeElement.scrollLeft = (this.slideWidth + gap) * newActiveIndex;
   }
 
+  askToDelete () {
+    this.store.dispatch(setDeletionModal({ visible: true }));
+  }
+
   ngOnDestroy(): void {
-    if (this.state$) this.state$.unsubscribe();
+    if (this.cardState$) this.cardState$.unsubscribe();
   }
 }

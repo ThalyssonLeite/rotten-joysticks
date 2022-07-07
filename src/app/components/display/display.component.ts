@@ -1,13 +1,15 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { setHeaderMenuLabel } from 'src/app/data/app.actions';
 import { APIService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'rojo-no-login',
-  templateUrl: './no-login.component.html',
-  styleUrls: ['./no-login.component.scss']
+  selector: 'rojo-display',
+  templateUrl: './display.component.html',
+  styleUrls: ['./display.component.scss']
 })
-export class NoLoginComponent implements OnInit {
+export class DisplayComponent implements OnInit {
   @ViewChild('slider') slider: ElementRef;
 
   gamesList: any[];
@@ -19,11 +21,15 @@ export class NoLoginComponent implements OnInit {
 
   loadingPages: boolean = false;
 
-  constructor(private apiService: APIService, private router: Router) { }
+  logged: boolean = false;
+
+  constructor(private apiService: APIService, private router: Router, private store: Store<{ header }>) { }
 
   ngOnInit(): void {
     this.getGameList();
     this.getGamesByPagination(this.pageNumber);
+    this.store.dispatch(setHeaderMenuLabel({ label: localStorage.getItem('token') === null ? 'Login' : 'Signout' }));
+    this.store.select('header').subscribe(label => this.logged = label === 'Signout');
   }
 
   getGameList () {
@@ -93,5 +99,9 @@ export class NoLoginComponent implements OnInit {
 
   goToDetailsPage (game: any) {
     this.router.navigate([`/${game._id}`]);
+  }
+
+  goToAddGamePage () {
+    this.router.navigate(['add']);
   }
 }

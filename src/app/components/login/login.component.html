@@ -1,0 +1,28 @@
+<div class="login">
+  <div class="sign-in">
+    SIGN IN
+  </div>
+
+  <div class="insert-account">
+    Insert your Account Information
+  </div>
+
+  <div class="divisor" *ngIf="!error"></div>
+  <div class="error" *ngIf="error">*Invalid Email or Password</div>
+
+  <form action="#">
+    <div class="inputs">
+      <input type="text" placeholder="Email" (input)="storeInputOf($event, 'email')" spellcheck="false">
+      <input type="password" placeholder="Password" (input)="storeInputOf($event, 'password')" spellcheck="false">
+    </div>
+
+    <input type="submit" *ngIf="!loading" value="Login your account" class="button" [class.is-disabled]="!inputs.email || !inputs.password" (click)="tryToLogin()">
+    <div class="button" *ngIf="loading" style="cursor: not-allowed">
+      <rojo-loading-balls  [color]="'var(--contrast-color)'"></rojo-loading-balls>
+    </div>
+  </form>
+
+  <div class="no-account">
+    No account? <b><a target="blank" href="mailto:fabio@tindin.com.br">Send email to fabio@tindin.com.br</a></b>
+  </div>
+</div>

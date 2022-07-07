@@ -24,7 +24,13 @@
   </div>
 
   <div class="catalog">
-    <div class="catalog__title">Catalog</div>
+    <div class="catalog__title">
+      Catalog
+
+      <div class="add-game" *ngIf="logged" (click)="goToAddGamePage()">
+        Add Game
+      </div>
+    </div>
 
     <div class="catalog__items">
       <rojo-card *ngFor="let game of gamesAtPagination" [game]="game" (click)="goToDetailsPage(game)"></rojo-card>

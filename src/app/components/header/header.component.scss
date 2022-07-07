@@ -72,7 +72,12 @@
   }
 }
 
+.header__user-wrapper {
+  position: relative;
+}
+
 .header__user {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -89,6 +94,33 @@
   &:hover {
     filter: var(--highlight-filter);
   }
+
+  z-index: 1;
+}
+
+.header__menu {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  padding-bottom: 16px;
+
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 50px;
+  background: var(--contrast-color);
+  color: black;
+  transition: 200ms ease;
+  cursor: pointer;
+
+  &.is-expanded {
+    height: 90px;
+  }
 }
 
 .header__icon {
@@ -101,3 +133,5 @@
 .header__image {
   height: 80px;
 }
+
+

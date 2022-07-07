@@ -1,12 +1,18 @@
 <div class="header-wrapper">
-  <div class="header">
+  <div #element class="header">
     <a class="header__logo" target="blank" href="https://www.tindin.com.br/">
       <i class="tindin-pig-image logo__pig"></i>
       <i class="tindin-logo-image logo__brand"></i>
     </a>
 
-    <div class="header__user">
-      <i class="person-outline-icon header__icon"></i>
+    <div class="header__user-wrapper">
+      <div class="header__user" (click)="toggleExpandedButton()">
+        <i class="person-outline-icon header__icon"></i>
+      </div>
+
+      <div class="header__menu" [class.is-expanded]="expanded" (click)="navigateTo()">
+        {{ label }}
+      </div>
     </div>
   </div>
 </div>

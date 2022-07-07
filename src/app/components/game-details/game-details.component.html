@@ -76,3 +76,9 @@
     {{ game.description }}
   </div>
 </div>
+
+<div class="buttons" *ngIf="logged">
+  <div class="btn delete" (click)="askToDelete()">
+    DELETE
+  </div>
+</div>

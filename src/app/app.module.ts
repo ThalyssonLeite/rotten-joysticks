@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { NoLoginComponent } from './components/no-login/no-login.component';
+import { DisplayComponent } from './components/display/display.component';
 import { CardComponent } from './components/card/card.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
@@ -16,17 +16,24 @@ import { GameDetailsComponent } from './components/game-details/game-details.com
 import { RateModalComponent } from './components/rate-modal/rate-modal.component';
 import { LoadingBallsComponent } from './components/loading-balls/loading-balls.component';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { LoginComponent } from './components/login/login.component';
+import { Interceptor } from './services/interceptor.service';
+import { AddGameComponent } from './components/add-game/add-game.component';
+import { DeletionModalComponent } from './components/deletion-modal/deletion-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NoLoginComponent,
+    DisplayComponent,
     CardComponent,
     FooterComponent,
     GameDetailsComponent,
     RateModalComponent,
     LoadingBallsComponent,
     SafeUrlPipe,
+    LoginComponent,
+    AddGameComponent,
+    DeletionModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,9 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     StoreModule.forRoot(AppReducers, {}),
     StoreDevtoolsModule.instrument(),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

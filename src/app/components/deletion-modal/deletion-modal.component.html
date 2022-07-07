@@ -1,0 +1,18 @@
+<div class="deletion-modal-wrapper" [class.is-visible]="visibility" *ngIf="game">
+  <div class="deletion-modal">
+    <div class="question">
+      Are you sure you want to delete <b>{{ game.title }}</b>?
+    </div>
+
+    <div class="buttons">
+      <div class="btn cancel" (click)="close()">
+        Cancel
+      </div>
+
+      <div class="btn delete" (click)="delete()">
+        <span *ngIf="!loading">Delete</span>
+        <rojo-loading-balls *ngIf="loading" [color]="'var(--main-color)'"></rojo-loading-balls>
+      </div>
+    </div>
+  </div>
+</div>

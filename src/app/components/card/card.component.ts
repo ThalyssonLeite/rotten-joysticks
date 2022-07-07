@@ -20,7 +20,7 @@ export class CardComponent implements OnInit {
 
     this.rating = this.game.rating !== undefined
     ? this.game.rating.toFixed(1).toString().endsWith('0')
-      ? this.game.rating + ' / 10'
+      ? this.game.rating.toFixed(1).toString().substring(0, 2).replace('.','') + ' / 10'
       : this.game.rating.toFixed(1) + ' / 10'
     : '???'
   }

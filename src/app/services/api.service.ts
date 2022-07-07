@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -11,19 +12,31 @@ export class APIService {
 
   constructor (private http: HttpClient) {};
 
+  auth (email: string, password: string) {
+    return this.http.post<Observable<any>>('https://api-labs.tindin.com.br/auth', { email, password });
+  }
+
   getGamesList () {
-    return this.http.get('https://api-labs.tindin.com.br/games');
+    return this.http.get<Observable<any>>('https://api-labs.tindin.com.br/games');
   }
 
   getGamesListSixPerPage (page: number) {
-    return this.http.get(`https://api-labs.tindin.com.br/games?perPage=8&page=${page || 1}`);
+    return this.http.get<Observable<any>>(`https://api-labs.tindin.com.br/games?perPage=8&page=${page || 1}`);
   }
 
   getGame (gameId: string) {
-    return this.http.get(`https://api-labs.tindin.com.br/games/${gameId}`);
+    return this.http.get<Observable<any>>(`https://api-labs.tindin.com.br/games/${gameId}`);
   }
 
   rateGame (gameId: string, rate: number) {
-    return this.http.post(`https://api-labs.tindin.com.br/games/rate`, { gameId, rate });
+    return this.http.post<Observable<any>>(`https://api-labs.tindin.com.br/games/rate`, { gameId, rate });
+  }
+
+  addGame (payload) {
+    return this.http.post('https://api-labs.tindin.com.br/games', payload);
+  }
+
+  deleteGame (id) {
+    return this.http.delete(`https://api-labs.tindin.com.br/games/${id}`);
   }
 }
