@@ -86,6 +86,6 @@
   releaseYear
   " (click)="submit()">
     <span *ngIf="!loading">Salvar</span>
-    <rojo-loading-balls *ngIf="!loading" [color]="'var(--contrast-color)'"></rojo-loading-balls>
+    <rojo-loading-balls *ngIf="loading" [color]="'var(--contrast-color)'"></rojo-loading-balls>
   </div>
 </div>
