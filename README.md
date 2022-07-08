@@ -15,7 +15,7 @@
 </p>
 
 ---
-### <b>Demo</b> <b style="font-size: 12px"></b><a href="https://github.com/ThalyssonLeite/rotten-joysticks/blob/master/github/demo.gif"><b style="font-size: 12px">(veja em tela cheia)</b></a>
+### <b>Demo</b> <b style="font-size: 12px"></b><a href="https://github.com/ThalyssonLeite/rotten-joysticks/blob/master/github/demo.gif" target="_blank"><b style="font-size: 12px">(veja em tela cheia)</b></a>
 
   <img src="./github/demo.gif" width="700" style="border-radius: 8px" alt="demonstration">
 <small style="font-size: 10px"><kbd>(Espere o gif carregar)</kbd></small>
