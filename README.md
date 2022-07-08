@@ -17,7 +17,8 @@
 ---
 ### <b>Demo</b>
 
-  <img src="./github/demo.gif" width="700" style="border-radius: 8px" alt="downloading demo gif">
+  <img src="./github/demo.gif" width="700" style="border-radius: 8px" alt="demonstration">
+<small style="font-size: 10px"><kbd>(Espere o gif carregar)</kbd></small>
 
 ---
 
