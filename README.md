@@ -4,7 +4,7 @@
 
 <strong><p align="center"><a href="https://rotten-joysticks.vercel.app/">Experimente a aplicação no ar</a></p></strong>
 <strong><p align="center"><a href="https://rotten-joysticks.vercel.app/">See the application online</a></p></strong>
-https://github.com/ThalyssonLeite/rotten-joysticks/blob/master/github/demo.gif
+
 <p align="center">
     <a href="#demo">Demo</a> •
     <a href="#tecnologias">Tecnologias</a> •
